@@ -1,0 +1,16 @@
+CXX=g++ -std=c++11
+RM=rm -f
+CFLAGS=-c -Wall
+
+test: Die.o LoadedDice.o Game.o mainDieGame.o
+	g++ Die.o LoadedDice.o Game.o mainDieGame.o -o mainDieGame
+mainDieGame.o: mainDieGame.cpp
+	$(CXX) $(CFLAGS) mainDieGame.cpp
+LoadedDice.o: LoadedDice.cpp LoadedDie.h
+	$(CXX) $(CFLAGS) LoadedDice.cpp
+Game.o: Game.cpp Game.h
+	$(CXX) $(CFLAGS) Game.cpp
+Die.o: Die.cpp Die.h
+	$(CXX) $(CFLAGS) Die.cpp
+clean:
+	$(RM) test *.o *~D
